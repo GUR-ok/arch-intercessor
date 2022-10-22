@@ -26,7 +26,7 @@ logging:
   level:
     root: INFO
     org.springframework: INFO
-    ru.gur.archorder: DEBUG
+    ru.gur.archintercessor: DEBUG
 
 camunda:
   bpm:

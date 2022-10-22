@@ -38,7 +38,7 @@ logging:
   level:
     root: INFO
     org.springframework: INFO
-    ru.gur.archorder: INFO
+    ru.gur.archintercessor: INFO
 
 camunda.bpm:
   admin-user:
