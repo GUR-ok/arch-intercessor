@@ -1,0 +1,41 @@
+server:
+  servlet:
+    context-path: /
+  port: 8080
+
+management:
+  server:
+    port: 8003
+  endpoints:
+    web:
+      base-path: /
+spring:
+  datasource:
+    url: jdbc:h2:mem:memdb;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: p
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      # http://localhost:8080/h2-console
+      enabled: true
+  main:
+    banner-mode: CONSOLE
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    ru.gur.archorder: DEBUG
+
+camunda:
+  bpm:
+    job-execution:
+      enabled: true
+    # http://localhost:8080/camunda/app/admin/default/#/
+    admin-user:
+      id: demo
+      password: demo
+      firstName: Demo
+    filter:
+      create: All tasks
