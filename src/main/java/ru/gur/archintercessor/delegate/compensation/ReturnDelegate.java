@@ -1,4 +1,4 @@
-package ru.gur.archintercessor.delegate;
+package ru.gur.archintercessor.delegate.compensation;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;

@@ -4,6 +4,7 @@
 1) `mvn package`
 2) `docker build -t gurok/arch_intercessor .`
 3) `docker push gurok/arch_intercessor`
+   
    Для локального поднятия кафки: `docker-compose up`
    
 - `minikube start`
@@ -30,6 +31,11 @@ kubectl create namespace m && helm repo add ingress-nginx https://kubernetes.git
     kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
     ```  
 - дождаться поднятия подов
+
+
+Админская панель доступна по адресу: http://localhost:8080/camunda/app/admin/default/#/
+
+kubectl port-forward -n arch-gur arch-intercessor-deployment-76548647fd-bpxbj 8000:8000
 
 ---
 

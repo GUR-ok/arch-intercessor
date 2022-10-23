@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -17,10 +18,17 @@ public class NewOrderReceivedEventData implements HttpEvent {
     private String productId;
 
     @NotNull
+    @Future
     private LocalDate deliveryDate;
 
     @NotNull
     private Long productQuantity;
+
+    @NotNull
+    private DeliveryTimeSlot deliveryTimeSlot;
+
+    @NotBlank
+    private String accountId;
 
     @Override
     public Event getEvent() {

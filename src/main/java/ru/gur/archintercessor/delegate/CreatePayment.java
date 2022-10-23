@@ -1,22 +1,27 @@
 package ru.gur.archintercessor.delegate;
 
+import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.gur.archintercessor.interaction.payment.PayRequest;
+import ru.gur.archintercessor.interaction.payment.PaymentClient;
+import ru.gur.archintercessor.variables.VariableKey;
 
 @Component
+@RequiredArgsConstructor
 public class CreatePayment extends AbstractCancelableDelegate {
 
-    @Value("${createPayment.error:false}")
-    private Boolean createPaymentErrorFlag;
+    private final PaymentClient paymentClient;
 
     @Override
     protected void doExecute(DelegateExecution delegateExecution) {
-        if (createPaymentErrorFlag) {
-            System.out.println("Error when CreatePayment");
+        System.out.println("CreatePayment");
 
-            throw new RuntimeException();
-        }
-        System.out.println("Success CreatePayment");
+        final String paymentId = paymentClient.makePayment(PayRequest.builder()
+                .accountId((String) delegateExecution.getVariable(VariableKey.ACCOUNT_ID.name()))
+                .amount((Double) delegateExecution.getVariable(VariableKey.AMOUNT.name()))
+                .build());
+
+        delegateExecution.setVariable(VariableKey.PAYMENT_ID.name(), paymentId);
     }
 }
