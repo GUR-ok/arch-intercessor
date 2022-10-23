@@ -39,3 +39,7 @@ camunda:
       firstName: d
     filter:
       create: All tasks
+
+kafka:
+  bootstrapAddress: localhost:9091
+  groupId: group1
