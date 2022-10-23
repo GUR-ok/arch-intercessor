@@ -34,8 +34,12 @@ camunda:
       enabled: true
     # http://localhost:8080/camunda/app/admin/default/#/
     admin-user:
-      id: demo
-      password: demo
-      firstName: Demo
+      id: d
+      password: d
+      firstName: d
     filter:
       create: All tasks
+
+kafka:
+  bootstrapAddress: localhost:9091
+  groupId: group1

@@ -1,8 +1,10 @@
+![img.png](img.png)
 
 #### Инструкция по запуску:
 1) `mvn package`
 2) `docker build -t gurok/arch_intercessor .`
 3) `docker push gurok/arch_intercessor`
+   Для локального поднятия кафки: `docker-compose up`
    
 - `minikube start`
 - `kubectl create namespace arch-gur`
@@ -14,6 +16,7 @@ kubectl delete ingressClass nginx
 kubectl create namespace m && helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/ && helm repo update && helm install nginx ingress-nginx/ingress-nginx --namespace m -f nginx-ingress.yaml
 ```
 
+- `helm install gorelov-kafka ./deployment/kafka/`
 - `helm install gorelov-intercessor ./deployment/app/`
    `kubectl get pods -n arch-gur`
 - В случае ошибки при деплое приложения через helm
@@ -34,5 +37,6 @@ kubectl create namespace m && helm repo add ingress-nginx https://kubernetes.git
 
 - `helm uninstall gorelov-intercessor`
 - `helm uninstall nginx -n m`
+- `helm uninstall gorelov-kafka`  
 - `kubectl delete namespace arch-gur`
 - `kubectl delete namespace m`

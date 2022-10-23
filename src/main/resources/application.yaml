@@ -49,3 +49,7 @@ camunda.bpm:
     create: All tasks
   job-execution:
     enabled: true
+
+kafka:
+  bootstrapAddress: kafka:9094
+  groupId: group1
