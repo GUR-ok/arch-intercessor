@@ -7,5 +7,5 @@ public interface ProductClient {
 
     ProductReserveResponse reserveProduct(ProductReserveRequest productReserveRequest);
 
-    void cancelReserve(String reserveId);
+    void cancelReserve(String processId, String reserveId);
 }

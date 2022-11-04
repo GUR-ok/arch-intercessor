@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class Producer {
     private final KafkaTemplate<String, String> kafkaTemplateString;
 
-    public void sendString(String data) {
-        kafkaTemplateString.send("intercessor", data)
+    public void sendString(String key, String data) {
+        kafkaTemplateString.send("intercessor", key, data)
                 .addCallback(
                         result -> log.info("Kafka send complete"),
                         fail -> log.error("Kafka fail send"));

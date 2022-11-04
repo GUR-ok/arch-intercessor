@@ -18,6 +18,6 @@ public class CancelDelivery extends AbstractCompensationDelegate{
     protected void doExecute(DelegateExecution execution) {
         System.out.println("CancelDelivery");
 
-        deliveryClient.cancelDelivery(UUID.fromString((String) execution.getVariable(VariableKey.DELIVERY_ID.name())));
+        deliveryClient.cancelDelivery(execution.getProcessInstanceId(), UUID.fromString((String) execution.getVariable(VariableKey.DELIVERY_ID.name())));
     }
 }

@@ -16,7 +16,7 @@ public class ProductClientImpl implements ProductClient {
     private final Producer producer;
 
     @Override
-    public ProductReserveResponse reserveProduct(ProductReserveRequest productReserveRequest) {
+    public ProductReserveResponse reserveProduct(final ProductReserveRequest productReserveRequest) {
         return ProductReserveResponse.builder()
                 .id(UUID.randomUUID().toString())
                 .amount(new Random().nextDouble())
@@ -24,7 +24,7 @@ public class ProductClientImpl implements ProductClient {
     }
 
     @Override
-    public void cancelReserve(String reserveId) {
-        producer.sendString(reserveId);
+    public void cancelReserve(final String processId, final String reserveId) {
+        producer.sendString(processId, reserveId);
     }
 }

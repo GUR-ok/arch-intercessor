@@ -53,3 +53,7 @@ camunda.bpm:
 kafka:
   bootstrapAddress: kafka:9094
   groupId: group1
+
+interaction:
+  profiles:
+    uri: ${PROFILES_URI:http://arch-order-service.arch-gur.svc.cluster.local:9000}

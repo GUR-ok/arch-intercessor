@@ -6,5 +6,5 @@ public interface DeliveryClient {
 
     UUID createDelivery(DeliveryCreationRequest deliveryCreationRequest);
 
-    void cancelDelivery(UUID deliveryId);
+    void cancelDelivery(String processId, UUID deliveryId);
 }

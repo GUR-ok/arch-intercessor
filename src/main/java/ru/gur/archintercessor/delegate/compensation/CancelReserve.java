@@ -16,6 +16,6 @@ public class CancelReserve extends AbstractCompensationDelegate {
     protected void doExecute(DelegateExecution execution) {
         System.out.println("CancelReserve");
 
-        productClient.cancelReserve((String) execution.getVariable(VariableKey.RESERVE_ID.name()));
+        productClient.cancelReserve(execution.getProcessInstanceId(), (String) execution.getVariable(VariableKey.RESERVE_ID.name()));
     }
 }
