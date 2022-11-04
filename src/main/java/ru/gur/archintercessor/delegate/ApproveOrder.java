@@ -1,6 +1,7 @@
 package ru.gur.archintercessor.delegate;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Component;
 import ru.gur.archintercessor.interaction.order.OrderClient;
 import ru.gur.archintercessor.variables.VariableKey;
 
+import java.util.UUID;
+
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class ApproveOrder implements JavaDelegate {
@@ -33,8 +37,9 @@ public class ApproveOrder implements JavaDelegate {
 
             System.out.println(execution.getProcessInstanceId());
 
-            orderClient.approveOrder(execution.getProcessInstanceId(), (Integer) execution.getVariable(VariableKey.ORDER_ID.name()));
+            orderClient.approveOrder(execution.getProcessInstanceId(), (UUID) execution.getVariable(VariableKey.ORDER_ID.name()));
         } catch (Exception e) {
+            log.error("Delegate {}; Exception: {}", this.getClass().getSimpleName(), e);
             throw new BpmnError("errorCode");
         }
     }

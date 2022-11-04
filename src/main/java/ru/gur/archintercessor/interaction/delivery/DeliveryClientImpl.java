@@ -18,7 +18,7 @@ public class DeliveryClientImpl implements DeliveryClient {
     }
 
     @Override
-    public void cancelDelivery(UUID deliveryId) {
-        producer.sendString(deliveryId.toString());
+    public void cancelDelivery(String processId, UUID deliveryId) {
+        producer.sendString(processId, deliveryId.toString());
     }
 }

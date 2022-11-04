@@ -1,10 +1,13 @@
 package ru.gur.archintercessor.delegate.compensation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public abstract class AbstractCompensationDelegate implements JavaDelegate {
 
@@ -17,9 +20,10 @@ public abstract class AbstractCompensationDelegate implements JavaDelegate {
 
             doExecute(execution);
         } catch (Exception e) {
+            log.error("Delegate {}; Exception: {}", this.getClass().getSimpleName(), e);
             throw new BpmnError("errorCode");
         }
     }
 
-    protected abstract void doExecute(DelegateExecution execution);
+    protected abstract void doExecute(DelegateExecution execution) throws JsonProcessingException;
 }

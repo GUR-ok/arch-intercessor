@@ -1,10 +1,15 @@
 package ru.gur.archintercessor.interaction.order;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import ru.gur.archintercessor.interaction.order.request.CreateOrderRequest;
+
+import java.util.UUID;
+
 public interface OrderClient {
 
-    Integer createOrder(OrderCreationRequest orderCreationRequest);
+    UUID createOrder(CreateOrderRequest orderCreationRequest);
 
-    void cancelOrder(String processId, Integer orderId);
+    void cancelOrder(String processId, UUID orderId) throws JsonProcessingException;
 
-    void approveOrder(String processId, Integer orderId);
+    void approveOrder(String processId, UUID orderId) throws JsonProcessingException;
 }
