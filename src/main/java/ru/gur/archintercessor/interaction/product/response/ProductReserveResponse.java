@@ -3,11 +3,13 @@ package ru.gur.archintercessor.interaction.product.response;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 @Builder
 public class ProductReserveResponse {
 
-    private String id;
+    private UUID reserveId;
 
     private Double amount;
 }

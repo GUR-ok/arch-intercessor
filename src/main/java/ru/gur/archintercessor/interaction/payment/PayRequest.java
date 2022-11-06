@@ -3,11 +3,17 @@ package ru.gur.archintercessor.interaction.payment;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 @Builder
 public class PayRequest {
 
-    private String accountId;
+    private String processId;
+
+    private UUID orderId;
+
+    private UUID accountId;
 
     private Double amount;
 }

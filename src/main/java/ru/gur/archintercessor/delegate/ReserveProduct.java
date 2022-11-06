@@ -8,6 +8,8 @@ import ru.gur.archintercessor.interaction.product.request.ProductReserveRequest;
 import ru.gur.archintercessor.interaction.product.response.ProductReserveResponse;
 import ru.gur.archintercessor.variables.VariableKey;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class ReserveProduct extends AbstractCancelableDelegate {
@@ -19,10 +21,13 @@ public class ReserveProduct extends AbstractCancelableDelegate {
         System.out.println("ReserveProduct");
 
         final ProductReserveResponse productReserveResponse = productClient.reserveProduct(ProductReserveRequest.builder()
+                .processId(delegateExecution.getProcessInstanceId())
+                .orderId((UUID) delegateExecution.getVariable(VariableKey.ORDER_ID.name()))
                 .productId((String) delegateExecution.getVariable(VariableKey.PRODUCT_ID.name()))
+                .quantity((Long) delegateExecution.getVariable(VariableKey.PRODUCT_QUANTITY.name()))
                 .build());
 
-        delegateExecution.setVariable(VariableKey.RESERVE_ID.name(), productReserveResponse.getId());
+        delegateExecution.setVariable(VariableKey.RESERVE_ID.name(), productReserveResponse.getReserveId());
         delegateExecution.setVariable(VariableKey.AMOUNT.name(), productReserveResponse.getAmount());
     }
 }

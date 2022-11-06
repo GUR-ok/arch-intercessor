@@ -8,6 +8,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -27,8 +28,8 @@ public class NewOrderReceivedEventData implements HttpEvent {
     @NotNull
     private DeliveryTimeSlot deliveryTimeSlot;
 
-    @NotBlank
-    private String accountId;
+    @NotNull
+    private UUID accountId;
 
     @Override
     public Event getEvent() {

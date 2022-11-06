@@ -1,26 +1,38 @@
 package ru.gur.archintercessor.interaction.payment;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.UUID;
+import java.net.URI;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class PaymentClientImpl implements PaymentClient {
 
-    @Value("${createPayment.error:false}")
-    private Boolean createPaymentErrorFlag;
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    @Value("${interaction.billing.uri}")
+    private URI billingUri;
 
     @Override
-    public String makePayment(PayRequest payRequest) {
-        if (createPaymentErrorFlag) {
-            System.out.println("Error when CreatePayment");
+    public String makePayment(final PayRequest payRequest) {
+        Assert.notNull(payRequest, "payRequest must not be null");
 
-            throw new RuntimeException();
-        }
-        System.out.println("Success CreatePayment");
-        return UUID.randomUUID().toString();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(billingUri + "/account"); // The allRequestParams must have been built for all the query params
+
+        final RequestEntity<PayRequest> requestEntity =
+                RequestEntity
+                        .post(builder.toUriString(), String.class)
+                        .body(payRequest);
+        log.info("DeliveryCreationRequest: {}", requestEntity);
+
+        return restTemplate.exchange(requestEntity, String.class).getBody();
     }
 }

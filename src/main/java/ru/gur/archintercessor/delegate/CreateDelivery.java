@@ -23,6 +23,7 @@ public class CreateDelivery extends AbstractCancelableDelegate {
 
         final UUID deliveryId = deliveryClient.createDelivery(DeliveryCreationRequest.builder()
                 .processId(delegateExecution.getProcessInstanceId())
+                .orderId((UUID) delegateExecution.getVariable(VariableKey.ORDER_ID.name()))
                 .deliveryDate((LocalDate) delegateExecution.getVariable(VariableKey.DELIVERY_DATE.name()))
                 .deliveryTimeSlot((DeliveryTimeSlot) delegateExecution.getVariable(VariableKey.DELIVERY_TIME_SLOT.name()))
                 .build());

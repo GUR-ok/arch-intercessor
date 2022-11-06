@@ -1,5 +1,6 @@
 package ru.gur.archintercessor.delegate.compensation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,9 @@ public class CancelDelivery extends AbstractCompensationDelegate{
     private final DeliveryClient deliveryClient;
 
     @Override
-    protected void doExecute(DelegateExecution execution) {
+    protected void doExecute(DelegateExecution execution) throws JsonProcessingException {
         System.out.println("CancelDelivery");
 
-        deliveryClient.cancelDelivery(execution.getProcessInstanceId(), UUID.fromString((String) execution.getVariable(VariableKey.DELIVERY_ID.name())));
+        deliveryClient.cancelDelivery(execution.getProcessInstanceId(), (UUID) execution.getVariable(VariableKey.DELIVERY_ID.name()));
     }
 }
