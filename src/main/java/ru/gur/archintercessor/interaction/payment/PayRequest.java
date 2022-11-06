@@ -13,7 +13,7 @@ public class PayRequest {
 
     private UUID orderId;
 
-    private String accountId;
+    private UUID accountId;
 
     private Double amount;
 }

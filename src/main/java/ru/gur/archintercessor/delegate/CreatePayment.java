@@ -22,7 +22,7 @@ public class CreatePayment extends AbstractCancelableDelegate {
         final String paymentId = paymentClient.makePayment(PayRequest.builder()
                 .processId(delegateExecution.getProcessInstanceId())
                 .orderId((UUID) delegateExecution.getVariable(VariableKey.ORDER_ID.name()))
-                .accountId((String) delegateExecution.getVariable(VariableKey.ACCOUNT_ID.name()))
+                .accountId((UUID) delegateExecution.getVariable(VariableKey.ACCOUNT_ID.name()))
                 .amount((Double) delegateExecution.getVariable(VariableKey.AMOUNT.name()))
                 .build());
 
