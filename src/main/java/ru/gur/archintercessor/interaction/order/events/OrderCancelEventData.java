@@ -3,7 +3,8 @@ package ru.gur.archintercessor.interaction.order.events;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
+import ru.gur.archintercessor.kafka.Event;
+import ru.gur.archintercessor.kafka.KafkaEvent;
 
 import java.util.UUID;
 

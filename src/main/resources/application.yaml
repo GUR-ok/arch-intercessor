@@ -55,5 +55,11 @@ kafka:
   groupId: group1
 
 interaction:
-  profiles:
+  order:
     uri: ${PROFILES_URI:http://arch-order-service.arch-gur.svc.cluster.local:9000}
+  store:
+    uri: ${PROFILES_URI:http://arch-store-service.arch-gur.svc.cluster.local:9000}
+  delivery:
+    uri: ${PROFILES_URI:http://arch-delivery-service.arch-gur.svc.cluster.local:9000}
+  billing:
+    uri: ${PROFILES_URI:http://arch-billing-service.arch-gur.svc.cluster.local:9000}
