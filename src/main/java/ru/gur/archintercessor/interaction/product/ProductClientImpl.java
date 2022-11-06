@@ -53,7 +53,7 @@ public class ProductClientImpl implements ProductClient {
         Assert.notNull(reserveId, "reserveId must not be null");
 
         final KafkaEvent kafkaEvent = ProductReserveCancelEventData.builder()
-                .reserveId(reserveId)
+                .orderId(reserveId)
                 .build();
 
         producer.sendEvent(TOPIC, processId, kafkaEvent);
