@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class ProductReserveCancelEventData implements KafkaEvent {
 
-    UUID reserveId;
+    UUID orderId;
 
     @Override
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Prevents duplication when serializing to JSON (subtype discriminator property)
